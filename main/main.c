@@ -153,7 +153,6 @@ void echo_task(void *p) {
 
     uint32_t trigger_timestamps[2];
     int times_read = 0;
-    double distance = 0.0;
 
     for (;;) {
         if (xQueueReceive(xQueueTime, &trigger_timestamps[times_read],
@@ -162,6 +161,7 @@ void echo_task(void *p) {
 
             if (times_read == 2) {
                 printf("Echo de saída...\n");
+                double distance = 0.0;
                 uint32_t startTime = trigger_timestamps[0];
                 uint32_t endTime = trigger_timestamps[1];
                 uint32_t time_delta = endTime - startTime;
